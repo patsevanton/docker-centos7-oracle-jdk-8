@@ -9,4 +9,5 @@ RUN yum -y upgrade && \
     echo "881ee6070efcb427204f04c98db9a173  jdk-8u92-linux-x64.rpm" >> MD5SUM && \
     md5sum -c MD5SUM && \
     rpm -Uvh jdk-8u92-linux-x64.rpm && \
+    yum -y clean all && \
     rm -f jdk-8u92-linux-x64.rpm MD5SUM

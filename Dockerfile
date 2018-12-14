@@ -1,13 +1,14 @@
 FROM centos:centos7
 
-MAINTAINER Pluribus Labs Docker Dev <docker-dev@pluribuslabs.com>
-
-RUN yum -y upgrade && \
+RUN ERSION=8u191 && \
+    BUILD=b12 && \
+    SIG=2787e4a523244c269598db4e85c51e0c && \
     yum -y update && \
-    yum -y install wget unzip findutils && \
-    wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u102-b14/jdk-8u102-linux-x64.rpm && \
-    echo "1ffe998845b594c66db2703dd5f60d88  jdk-8u102-linux-x64.rpm" >> MD5SUM8 && \
+    curl --silent --location --retry 3 \
+    --header "Cookie: oraclelicense=accept-securebackup-cookie;" \
+    https://download.oracle.com/otn-pub/java/jdk/"${VERSION}"+"${BUILD}"/"${SIG}"/jdk-"${VERSION}"-linux-x64.rpm \
+    echo "fc6f805f93148cb396ca73989d7c9ea5  jdk-8u191-linux-x64.rpm" >> MD5SUM8 && \
     md5sum -c MD5SUM8 && \
-    rpm -Uvh jdk-8u102-linux-x64.rpm && \
+    rpm -Uvh jdk-8u191-linux-x64.rpmm && \
     yum -y clean all && \
-    rm -f jdk-8u102-linux-x64.rpm MD5SUM8
+    rm -f jdk-8u191-linux-x64.rpm MD5SUM8

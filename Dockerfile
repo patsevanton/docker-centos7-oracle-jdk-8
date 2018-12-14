@@ -1,6 +1,6 @@
 FROM centos:centos7
 
-RUN ERSION=8u191 && \
+RUN VERSION=8u191 && \
     BUILD=b12 && \
     SIG=2787e4a523244c269598db4e85c51e0c && \
     yum -y update && \

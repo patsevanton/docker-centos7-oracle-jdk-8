@@ -5,7 +5,7 @@ RUN yum install -y rpm-build rpmdevtools tree
 RUN mkdir -p ~/rpmbuild/{RPMS,SRPMS,BUILD,SOURCES,SPECS}
 RUN spectool -g -R maven.spec
 RUN tree
-RUN rpmbuild maven.spec
+RUN rpmbuild -bb maven.spec
 RUN tree
 
 #FROM centos:centos7 as production

@@ -10,9 +10,10 @@ RUN curl --silent --location --retry 3 \
     rm -rf /var/cache/yum && \
     rm -f jdk-8u191-linux-x64.rpm MD5SUM8 && \
     cd /usr/local/bin && \
-    curl -LO apache-maven-3.5.3-bin.tar.gz http://www-us.apache.org/dist/maven/maven-3/3.5.3/binaries/apache-maven-3.5.3-bin.tar.gz && \
-    tar -xf apache-maven-3.5.3-bin.tar.gz && \
-    mv apache-maven-3.5.3 apache-maven && \
+    curl --silent --location --retry 3 -o apache-maven-3.3.9-bin.tar.gz \
+    http://www-us.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz && \
+    tar -xf apache-maven-3.3.9-bin.tar.gz && \
+    mv apache-maven-3.3.9 apache-maven && \
     echo "export M2_HOME=/usr/local/bin/apache-maven" > /etc/profile.d/maven.sh && \
     echo "export PATH=${M2_HOME}/bin:${PATH}" > /etc/profile.d/maven.sh && \
     chmod +x /etc/profile.d/maven.sh && \

@@ -7,4 +7,12 @@ RUN curl --silent --location --retry 3 \
     md5sum -c MD5SUM8 && \
     rpm -Uvh jdk-8u191-linux-x64.rpm && \
     yum -y clean all && \
-    rm -f jdk-8u191-linux-x64.rpm MD5SUM8
+    rm -f jdk-8u191-linux-x64.rpm MD5SUM8 \
+    cd /usr/local/bin \
+    wget http://www-us.apache.org/dist/maven/maven-3/3.5.3/binaries/apache-maven-3.5.3-bin.tar.gz \
+    tar -xf apache-maven-3.5.3-bin.tar.gz \
+    mv apache-maven-3.5.3 apache-maven \
+    echo "export M2_HOME=/usr/local/bin/apache-maven" > /etc/profile.d/maven.sh \
+    echo "export PATH=${M2_HOME}/bin:${PATH}" > /etc/profile.d/maven.sh \
+    chmod +x /etc/profile.d/maven.sh \
+    source /etc/profile.d/maven.sh
